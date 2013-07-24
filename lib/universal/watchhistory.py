@@ -446,6 +446,3 @@ class WatchHistory:
         
         self.dbcur.execute(sql_delete)
         self.dbcon.commit()
-
-def settings():
-    common.addon.show_settings()

@@ -516,6 +516,3 @@ if sys.argv and len(sys.argv) >= 4 and sys.argv[3] == 'script.module.universal.f
     elif fav_mode == 'delete':
         fav.delete_item_from_db(title, fmtd_title, section_title, section_addon_title, sub_section_title, sub_section_addon_title, item_mode)
         xbmc.executebuiltin("Container.Refresh")
-
-def settings():
-    common.addon.show_settings()
