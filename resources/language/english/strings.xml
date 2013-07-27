@@ -1,8 +1,4 @@
 <strings>
-	<!-- Google Tracking -->
-	<string id="30000">General</string>
-	<string id="30001">Enable Tracking</string>
-	
 	<!-- Watch History -->
 	<string id="30300">Watch History</string>
 	<string id="30303">Show directory if video has multiple parts/links</string>

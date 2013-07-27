@@ -1,12 +1,4 @@
 <settings>
-<!--
-	<category label="30000"  visible="false">
-		<setting id="ga_notified" type="enum" values="Yes|No" label="GA Notified" default="1" visible="false"/>
-		<setting id="ga_enable" type="enum" values="Yes|No" label="30001" default="0"  visible="false"/>
-		<setting id="ga_time" type="text" label="GA Called" default="2000-01-01 00:00:00" visible="false"/>
-		<setting id="ga_visitor" type="text" label="GA visitor" default="" visible="false"/>
-	</category>
--->
 	<category label="30300">				
 		<setting id="add_dir" type="bool" label="30303" default="false" />
 		<setting id="cleanup-history" type="enum" values="Max Days|Max Count" label="30304" default="0" />
@@ -15,10 +7,6 @@
     </category>
 	
 	<category label="30400">	
-		<setting id="ga_notified" type="enum" values="Yes|No" label="GA Notified" default="1" visible="false"/>
-		<setting id="ga_enable" type="enum" values="Yes|No" label="30001" default="0"  visible="false"/>
-		<setting id="ga_time" type="text" label="GA Called" default="2000-01-01 00:00:00" visible="false"/>
-		<setting id="ga_visitor" type="text" label="GA visitor" default="" visible="false"/>
 		<setting id="local_save_location" type="folder" label="30401" default="special://profile/addon_data/script.module.universal/"/>
 		<setting id="use_remote_db" type="bool" 	label="30402" default="false"/>
 			<setting id="db_address" type="text" 	label="30403" enable="eq(-1,true)" default="" />
