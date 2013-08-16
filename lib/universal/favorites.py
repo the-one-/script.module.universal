@@ -308,12 +308,20 @@ class Favorites:
         elif item_mode == 'addon':
             item_column_section = 'section_addon_title'
             item_column_sub_section = 'sub_section_addon_title'
+            
+        if DB == 'mysql':
+            params_var = "%s"
+        else:
+            params_var = "?"
+            
+        params = []
 
-        sql_select = "SELECT DISTINCT %s FROM favorites" % item_column_sub_section
+        sql_select = "SELECT DISTINCT " + item_column_sub_section + " FROM favorites"
         
         whereadded = False
         if addon_id != 'all':
-            sql_select = sql_select + ' WHERE addon_id = \'' + addon_id + '\''
+            params.append(addon_id)
+            sql_select = sql_select + ' WHERE addon_id = ' + params_var
             whereadded = True
             
         if whereadded == False:
@@ -321,12 +329,16 @@ class Favorites:
             whereadded = True
         else:
             sql_select = sql_select + ' AND '        
-        sql_select = sql_select + " %s = '%s' AND %s != '' ORDER BY %s ASC" % (item_column_section, section_title, item_column_sub_section, item_column_sub_section)
             
-        common.addon.log('-' + HELPER + '- -' + sql_select, 2)
-
-        self.dbcur.execute(sql_select)
+        params.append(section_title)
+        sql_select = sql_select + item_column_section + " = " + params_var + " AND " + item_column_sub_section + " != '' ORDER BY " + item_column_sub_section + " ASC" 
         
+        params = tuple(params)
+        
+        common.addon.log('-' + HELPER + '- -' + sql_select + (" %s," * len(params)) % params, 2)
+
+        self.dbcur.execute(sql_select, params)
+                    
         for matchedrow in self.dbcur.fetchall():
         
             match = dict(matchedrow)
@@ -344,19 +356,29 @@ class Favorites:
             item_column_section = 'section_title'
         elif item_mode == 'addon':
             item_column_section = 'section_addon_title'
+            
+        if DB == 'mysql':
+            params_var = "%s"
+        else:
+            params_var = "?"
         
-        sql_select = "SELECT DISTINCT %s FROM favorites" % item_column_section
+        params = []
+        
+        sql_select = "SELECT DISTINCT " + item_column_section + " FROM favorites"
         
         whereadded = False
         if addon_id != 'all':
-            sql_select = sql_select + ' WHERE addon_id = \'' + addon_id + '\''
+            params.append(addon_id)
+            sql_select = sql_select + ' WHERE addon_id = ' + params_var
             whereadded = True
         
-        sql_select = sql_select + " ORDER BY %s ASC" % item_column_section
-            
-        common.addon.log('-' + HELPER + '- -' + sql_select, 2)
+        sql_select = sql_select + " ORDER BY " + item_column_section + " ASC"
+        
+        params = tuple(params)
+        
+        common.addon.log('-' + HELPER + '- -' + sql_select + (" %s," * len(params)) % params, 2)
 
-        self.dbcur.execute(sql_select)
+        self.dbcur.execute(sql_select, params)
         
         for matchedrow in self.dbcur.fetchall():
         
@@ -380,35 +402,49 @@ class Favorites:
         elif item_mode == 'addon':
             item_column_section = 'section_addon_title'
             item_column_sub_section = 'sub_section_addon_title'
+            
+        if DB == 'mysql':
+            params_var = "%s"
+        else:
+            params_var = "?"
         
         try:
             import json
         except:
             import simplejson as json
+            
+        params = []
 
         sql_select = "SELECT * FROM favorites"
+                
         
         whereadded = False
         if addon_id != 'all':
-            sql_select = sql_select + ' WHERE addon_id = \'' + addon_id + '\''
+            params.append(addon_id)
+            sql_select = sql_select + ' WHERE addon_id = ' + params_var
             whereadded = True
         
         if section_title != 'all':
+            params.append(section_title)
             if whereadded == False:
                 sql_select = sql_select + ' WHERE '
                 whereadded = True
             else:
                 sql_select = sql_select + ' AND '        
-            sql_select = sql_select + " %s = '%s' " % (item_column_section, section_title)
+            sql_select = sql_select + item_column_section + " = " + params_var             
             
             if sub_section_title != 'all':
-                sql_select = sql_select + " AND %s = '%s' " % (item_column_sub_section, sub_section_title)
+                params.append(sub_section_title)
+                sql_select = sql_select + " AND " + item_column_sub_section + " = " + params_var 
+        
         
         sql_select = sql_select + " ORDER BY title ASC"
+        
+        params = tuple(params)
             
-        common.addon.log('-' + HELPER + '- -' + sql_select, 2)
+        common.addon.log('-' + HELPER + '- -' + sql_select + (" %s," * len(params)) % params, 2)
 
-        self.dbcur.execute(sql_select)
+        self.dbcur.execute(sql_select, params)
         
         for matchedrow in self.dbcur.fetchall():
         
