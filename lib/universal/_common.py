@@ -119,7 +119,8 @@ def dict_to_paramstr(dict):
     
 def notify(addon_id, typeq, title, message, times, line2='', line3=''):
     addon_tmp = Addon(addon_id)
-    title=addon_tmp.get_name() + title
+    if title == '' :
+        title='[B]' + addon_tmp.get_name() + '[/B]'
     if typeq == 'small':
         if times == '':
            times='5000'

@@ -179,7 +179,8 @@ class Favorites:
                        
         sql_insert = ''
         if self.is_already_in_favorites(section_title, section_addon_title, sub_section_title, sub_section_addon_title, title) == True:
-            common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - already exists in Favorites.', '8000')
+            #common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - already exists in Favorites.', '8000')
+            common.notify(self.addon_id, 'small', '[B]' + fmtd_title + '[/B]', '[B]Already exists in Favorites.[/B]', '8000')
         else:
             if DB == 'mysql':
                 sql_insert = "INSERT INTO favorites(addon_id, hash_title, title, fmtd_title, url, section_title, section_addon_title, sub_section_title, sub_section_addon_title, infolabels, image_url, fanart_url, isfolder, isplayable ) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
@@ -194,10 +195,12 @@ class Favorites:
             try:
                 self.dbcur.execute(sql_insert, (self.addon_id, hash_title, title, fmtd_title, url, section_title, section_addon_title, sub_section_title, sub_section_addon_title, str(infolabels), img, fanart, common.bool2str(is_folder), common.bool2str(is_playable) ))            
                 self.dbcon.commit()
-                common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - added successfully to Favorites.', '8000')
+                #common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - added successfully to Favorites.', '8000')
+                common.notify(self.addon_id, 'small', '[B]' + fmtd_title + '[/B]', '[B]Added to Favorites.[/B]', '8000')
             except:
-                common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - unable to add to Favorites.', '8000')                
-                raise
+                #common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - unable to add to Favorites.', '8000')                
+                common.notify(self.addon_id, 'small', '[B]' + fmtd_title + '[/B]', '[B]Unable to add to Favorites.[/B]', '8000')
+                pass
                 
     def delete_item_from_db(self, title, fmtd_title, section_title, section_addon_title, sub_section_title, sub_section_addon_title, item_mode='main'):
     
@@ -223,9 +226,11 @@ class Favorites:
         try:
             self.dbcur.execute(sql_delete, (self.addon_id, section_title, sub_section_title, hash_title) )            
             self.dbcon.commit()
-            common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - removed successfully from Favorites.', '8000')
+            #common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - removed successfully from Favorites.', '8000')
+            common.notify(self.addon_id, 'small', '[B]' + fmtd_title + '[/B]', '[B]Removed from Favorites.[/B]', '8000')
         except:
-            common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - unable to remove from Favorites.', '8000')                
+            #common.notify(self.addon_id, 'small', '', 'Item: ' + fmtd_title + ' - unable to remove from Favorites.', '8000')                
+            common.notify(self.addon_id, 'small', '[B]' + fmtd_title + '[/B]', '[B]Unable to remove from Favorites.[/B]', '8000')
             pass
         
     def build_url(self, queries):
