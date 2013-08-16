@@ -55,12 +55,15 @@ def str2bool(myinput):
     elif myinput == 'true': return True
     
 def str_conv(data):
-    if isinstance(data, unicode):
-        data = data.encode('utf8')
-    elif isinstance(data, str):
+    if isinstance(data, str):
         # Must be encoded in UTF-8
-        data.decode('utf8')
+        data = data.decode('utf8')
+	
+    import unicodedata
+    data = unicodedata.normalize('NFKD', data).encode('ascii','ignore')
+	
     data = data.decode('string-escape')
+        
     return data
         
 def encode_dict(dict):
