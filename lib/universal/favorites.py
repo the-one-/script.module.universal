@@ -335,7 +335,7 @@ class Favorites:
         
         params = tuple(params)
         
-        common.addon.log('-' + HELPER + '- -' + sql_select + (" %s," * len(params)) % params, 2)
+        common.addon.log('-' + HELPER + '- -' + sql_select + ":" + (" %s," * len(params)) % params, 2)
 
         self.dbcur.execute(sql_select, params)
                     
@@ -376,7 +376,7 @@ class Favorites:
         
         params = tuple(params)
         
-        common.addon.log('-' + HELPER + '- -' + sql_select + (" %s," * len(params)) % params, 2)
+        common.addon.log('-' + HELPER + '- -' + sql_select + ":" + (" %s," * len(params)) % params, 2)
 
         self.dbcur.execute(sql_select, params)
         
@@ -442,7 +442,7 @@ class Favorites:
         
         params = tuple(params)
             
-        common.addon.log('-' + HELPER + '- -' + sql_select + (" %s," * len(params)) % params, 2)
+        common.addon.log('-' + HELPER + '- -' + sql_select + ":" + (" %s," * len(params)) % params, 2)
 
         self.dbcur.execute(sql_select, params)
         
