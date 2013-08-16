@@ -94,7 +94,7 @@ def decode_dict(dict):
         if v.find("<squot>") >= 0:
             v = v.replace("<squot>", "'")
         if v.find('<dquot>') >= 0:
-            v = v.replace("<dquot>", "'")
+            v = v.replace("<dquot>", '"')
         if v.find('<ltbrc>') >= 0:
             v = v.replace('<ltbrc>', '{')
         if v.find('<rtbrc>') >= 0:
