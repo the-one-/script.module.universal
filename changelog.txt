@@ -1,3 +1,6 @@
+[B]v3.0.0[/B]
+Kodi/Frodo COmpatibility Fix: Load the lib files within the addon itself.
+
 [B]v1.0.1[/B]
 Bug Fix: Unicode UTF8 to string ASCII conversion
 Bug Fix: Favorites - Read from database, convert <dquot> to "
