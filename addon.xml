@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="script.module.universal"
        name="Universal - An Addons Toolkit"
-       version="1.0.2"
+       version="3.0.0"
        provider-name="the-one">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
