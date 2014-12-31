@@ -16,6 +16,31 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
+# load lib directory
+# begin
+import xbmc
+import re
+xbmc_version =  re.search('^(\d+)', xbmc.getInfoLabel( "System.BuildVersion" ))
+if xbmc_version:
+    xbmc_version = int(xbmc_version.group(1))
+else:
+    xbmc_version = 1
+if xbmc_version >= 14:
+    addon_id = 'script.module.universal'
+    lib_addon_dir_name = "lib"
+    import xbmcaddon
+    import os
+    from os.path import join, basename
+    import sys
+    addon = xbmcaddon.Addon(id=addon_id)
+    addon_path = addon.getAddonInfo('path')
+    sys.path.append(addon_path)
+    lib_addon_dir_path = os.path.join( addon_path, lib_addon_dir_name)
+    sys.path.append(lib_addon_dir_path)
+    for dirpath, dirnames, files in os.walk(lib_addon_dir_path):
+        sys.path.append(dirpath)
+# end
+
 import sys
 import xbmc
 import xbmcgui
